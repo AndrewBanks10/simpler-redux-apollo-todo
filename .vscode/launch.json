@@ -1,0 +1,96 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug",
+      "type": "chrome",
+      "request": "launch",
+      "webRoot": "${workspaceRoot}",
+      "url": "http://localhost:3000",
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "sourceMaps": true,
+      "preLaunchTask": "(Internal)Development",
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "node_modules/**"
+      ],
+      "sourceMapPathOverrides": {
+        "webpack:///*": "${webRoot}/*"
+      }
+    },
+    {
+      "name": "Run Production",
+      "type": "chrome",
+      "request": "launch",
+      "webRoot": "${workspaceRoot}",
+      "url": "http://localhost:3001",
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "sourceMaps": true,
+      "preLaunchTask": "(Internal)Production",
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "node_modules/**"
+      ],
+      "sourceMapPathOverrides": {
+        "webpack:///*": "${webRoot}/*"
+      }
+    },
+    {
+      "name": "Run Mocha Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--require",
+        "babel-register",
+        "--require",
+        "ignore-styles",
+        "--require",
+        "./test/apptest.jsx",
+        "./src/**/*+(.spec.js)",
+        "--no-timeouts",
+        "--colors"
+      ],
+      "preLaunchTask": "(Internal)StartApollo",
+      "stopOnEntry": false,
+      "sourceMaps": true,
+      "smartStep": true,
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": null,
+      "env": {
+        "NODE_ENV": "mochaTesting",
+        "TS_NODE_PROJECT": "./test/tsconfig.json"
+      }
+    },
+    {
+      "name": "Run Mocha Bench Test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--require",
+        "babel-register",
+        "--require",
+        "ignore-styles",
+        "--require",
+        "./test/apptest.jsx",
+        "./src/react-components/Todo/test/*+(.spec.js)",
+        "--no-timeouts",
+        "--colors"
+
+      ],
+      "preLaunchTask": "(Internal)StartApollo",
+      "stopOnEntry": false,
+      "sourceMaps": true,
+      "smartStep": true,
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": null,
+      "env": {
+        "NODE_ENV": "mochaBenchTesting",
+        "TS_NODE_PROJECT": "./test/tsconfig.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+    "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 2 versions", "safari >= 7", "ie >= 11"]
+          }
+        }],
+        "react"
+    ],
+    "plugins": [        
+        "syntax-dynamic-import",
+        "transform-object-rest-spread",
+        "react-hot-loader/babel",
+        "transform-react-jsx",
+        "dynamic-import-node",
+        ["transform-runtime", {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+        }]
+    ],
+    "env": {
+        "production": {
+            "presets": [
+                "react-optimize"
+            ]
+        },
+        "development": {
+            "plugins": [
+                "transform-react-jsx-source"
+            ]
+        }
+    },
+    "sourceMaps": true,
+    "retainLines": true
+}

@@ -1,0 +1,7 @@
+.vscode/chrome/**
+devdll/**
+dist/**
+node_modules/**
+index.dev.ejs
+package-lock.json
+todo.txt
