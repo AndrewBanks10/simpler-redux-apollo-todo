@@ -13,6 +13,7 @@
         "react-hot-loader/babel",
         "transform-react-jsx",
         "dynamic-import-node",
+        "transform-class-properties",
         ["transform-runtime", {
             "helpers": false,
             "polyfill": false,

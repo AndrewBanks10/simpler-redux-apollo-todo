@@ -14,15 +14,15 @@ const TITLEEDITTODO = 'Double click to edit todo.'
 const TodoEditItem = styled.div`
   padding-top: 0px;
   padding-bottom: 0px;
-  border-bottom: 1px solid RGB(220,220,220);  
+  border-bottom: 1px solid RGB(220,220,220);
 `
 
 const TodoItem = styled.div`
   padding-top: 14px;
   padding-bottom: 1px;
-  border-bottom: 1px solid RGB(220,220,220);  
+  border-bottom: 1px solid RGB(220,220,220);
   &:hover {
-    background-color: RGB(240,240,240); 
+    background-color: RGB(240,240,240);
   }
 `
 
@@ -61,7 +61,14 @@ const toDoItemStyles = {
   }
 }
 
-class ToDoItem extends React.Component {
+class ToDoItem extends React.PureComponent {
+  _onCheck = () =>
+    this.props.onCheck(this.props.id)
+  _deleteTodo = () =>
+    this.props.deleteTodo(this.props.id)
+  _startEdit = () =>
+    this.props.startEdit(this.props.id)
+
   render () {
     if (process.env.NODE_ENV !== 'production') {
       recordRender(localRecordRender, 'ToDoItem')
@@ -70,9 +77,6 @@ class ToDoItem extends React.Component {
       id,
       completed,
       text,
-      deleteTodo,
-      onCheck,
-      startEdit,
       editID,
       classes } = this.props
     if (editID === id) {
@@ -85,13 +89,13 @@ class ToDoItem extends React.Component {
     return (
       <TodoItem>
         <ItemCheckbox>
-          <Checkbox checked={completed} onChange={() => onCheck(id)} />
+          <Checkbox checked={completed} onChange={this._onCheck} />
         </ItemCheckbox>
-        <ItemText completed={completed} onDoubleClick={() => startEdit(id)} title={TITLEEDITTODO}>
+        <ItemText completed={completed} onDoubleClick={this._startEdit} title={TITLEEDITTODO}>
           {text}
         </ItemText>
         <ItemDelete className={classes.deleteIcon} title={TITLEDELETETODO}>
-          <ActionDelete onClick={() => deleteTodo(id)} />
+          <ActionDelete onClick={this._deleteTodo} />
         </ItemDelete>
         <FloatClear />
       </TodoItem>
